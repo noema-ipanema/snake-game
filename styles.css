@@ -1,0 +1,456 @@
+:root {
+  color-scheme: dark;
+  --page-bg: #0a0f18;
+  --page-glow: rgba(57, 96, 172, 0.22);
+  --card-bg: rgba(14, 20, 32, 0.88);
+  --card-border: rgba(162, 180, 220, 0.16);
+  --text: #eef3ff;
+  --muted: #9ca8c5;
+  --accent: #6ee7b7;
+  --accent-strong: #38bdf8;
+  --snake: #34d399;
+  --snake-head: #10b981;
+  --food: #fb7185;
+  --cell: #172033;
+  --button-bg: #182238;
+  --button-hover: #22304b;
+  --button-border: rgba(143, 172, 235, 0.22);
+  --button-text: #f8fbff;
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  background:
+    radial-gradient(circle at top, var(--page-glow), transparent 28%),
+    linear-gradient(180deg, #0d1320 0%, var(--page-bg) 100%);
+  color: var(--text);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.page {
+  min-height: 100vh;
+  width: min(100%, 980px);
+  margin: 0 auto;
+  padding: 56px 24px 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.hero,
+.game-card,
+.about-card {
+  width: 100%;
+}
+
+.hero {
+  max-width: 760px;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.game-card,
+.about-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+.game-card {
+  max-width: 760px;
+  padding: 32px;
+}
+
+.about-card {
+  max-width: 760px;
+  padding: 32px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+
+.game-card__header,
+.status-bar,
+.touch-controls,
+.touch-controls__row,
+.actions,
+.scoreboard,
+.leaderboard__header,
+.performance-card__header {
+  display: flex;
+}
+
+.game-card__header,
+.status-bar {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.game-card__header,
+.performance-card__header {
+  align-items: start;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  margin: 0;
+  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+}
+
+.hero__copy,
+.section-copy,
+.controls-info p,
+.about-card p {
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.section-copy {
+  max-width: 54ch;
+}
+
+.about-card p:first-of-type {
+  margin-top: 18px;
+}
+
+.scoreboard {
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.scoreboard__item {
+  min-width: 96px;
+  padding: 12px 14px;
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  background: rgba(21, 29, 45, 0.92);
+  text-align: center;
+}
+
+.scoreboard__label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.scoreboard__item strong {
+  font-size: 1.3rem;
+}
+
+.status-bar {
+  margin-top: 28px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 14px 16px;
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  background: rgba(15, 21, 34, 0.72);
+}
+
+.actions,
+.touch-controls,
+.touch-controls__row {
+  gap: 10px;
+}
+
+button {
+  background: var(--button-bg);
+  border: 1px solid var(--button-border);
+  color: var(--button-text);
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+button:hover {
+  background: var(--button-hover);
+  border-color: rgba(143, 172, 235, 0.38);
+  transform: translateY(-1px);
+}
+
+button:focus-visible,
+.board:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+}
+
+.game-shell {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.board {
+  --board-size: min(82vw, 560px);
+  width: var(--board-size);
+  height: var(--board-size);
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(16, 1fr);
+  gap: 2px;
+  padding: 12px;
+  border-radius: 22px;
+  background: rgba(8, 13, 24, 0.95);
+  border: 1px solid var(--card-border);
+  touch-action: manipulation;
+}
+
+.cell {
+  background: var(--cell);
+  border-radius: 5px;
+}
+
+.cell--snake {
+  background: var(--snake);
+}
+
+.cell--head {
+  background: var(--snake-head);
+}
+
+.cell--food {
+  background: var(--food);
+}
+
+.controls-info {
+  margin-top: 16px;
+  padding: 0 4px;
+}
+
+.touch-controls {
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.touch-controls__row {
+  justify-content: center;
+}
+
+.control-button {
+  min-width: 92px;
+}
+
+.leaderboard {
+  margin-top: 28px;
+  padding: 20px;
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  background: rgba(11, 17, 29, 0.84);
+}
+
+.performance-card {
+  margin-top: 28px;
+  padding: 24px;
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(12, 18, 31, 0.96) 0%, rgba(10, 16, 28, 0.92) 100%);
+}
+
+.leaderboard__header {
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.performance-card__header {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.leaderboard__header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.performance-card__header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.leaderboard__meta {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.performance-badge {
+  min-width: 156px;
+  padding: 14px 16px;
+  border: 1px solid rgba(110, 231, 183, 0.18);
+  border-radius: 16px;
+  background: rgba(9, 35, 31, 0.72);
+  text-align: center;
+}
+
+.performance-badge__label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.performance-badge strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 1.2rem;
+  color: var(--accent);
+}
+
+.performance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.metric {
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(162, 180, 220, 0.12);
+  background: rgba(18, 26, 41, 0.84);
+}
+
+.metric__label {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.metric strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 1.25rem;
+  line-height: 1.35;
+}
+
+.leaderboard__list,
+.performance-grid {
+  margin-bottom: 0;
+}
+
+.leaderboard__list {
+  list-style: decimal;
+  margin: 16px 0 0;
+  padding-left: 24px;
+  color: var(--text);
+}
+
+.leaderboard__list li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(162, 180, 220, 0.12);
+}
+
+.leaderboard__list li:last-child {
+  border-bottom: 0;
+}
+
+.leaderboard__entry {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.leaderboard__entry span:last-child {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.leaderboard__empty {
+  color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 28px 16px 44px;
+    gap: 22px;
+  }
+
+  .game-card,
+  .about-card {
+    padding: 20px;
+  }
+
+  .performance-card {
+    padding: 20px;
+  }
+
+  .game-card__header,
+  .status-bar,
+  .leaderboard__header,
+  .performance-card__header {
+    flex-direction: column;
+  }
+
+  .game-card__header {
+    align-items: stretch;
+  }
+
+  .scoreboard {
+    justify-content: stretch;
+  }
+
+  .scoreboard__item {
+    flex: 1 1 140px;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .actions button {
+    flex: 1 1 120px;
+  }
+
+  .control-button {
+    min-width: 0;
+    flex: 1 1 0;
+  }
+
+  .performance-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .touch-controls,
+  .touch-controls__row {
+    width: 100%;
+  }
+
+  .leaderboard,
+  .performance-card {
+    margin-top: 24px;
+  }
+}

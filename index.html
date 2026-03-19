@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cognitive Reflex Trainer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">Interactive Frontend Project</p>
+        <h1>Cognitive Reflex Trainer</h1>
+        <p class="hero__copy">
+          A modern take on Snake that highlights responsive gameplay, player focus, and
+          decision-making through lightweight performance metrics.
+        </p>
+      </section>
+
+      <section class="game-card" aria-label="Snake game showcase">
+        <div class="game-card__header">
+          <div>
+            <h2>Live Demo</h2>
+            <p class="section-copy">
+              Play a familiar arcade loop while the interface captures score, movement pace, and
+              session consistency in real time.
+            </p>
+          </div>
+          <div class="scoreboard" aria-label="Scoreboard">
+            <div class="scoreboard__item">
+              <span class="scoreboard__label">Score</span>
+              <strong id="score">0</strong>
+            </div>
+            <div class="scoreboard__item">
+              <span class="scoreboard__label">High Score</span>
+              <strong id="high-score">0</strong>
+            </div>
+          </div>
+        </div>
+
+        <section class="status-bar" aria-live="polite">
+          <span id="status">Press Start to play.</span>
+          <div class="actions">
+            <button id="start-button" type="button">Start</button>
+            <button id="pause-button" type="button">Pause</button>
+            <button id="restart-button" type="button">Restart</button>
+          </div>
+        </section>
+
+        <section class="game-shell">
+          <div
+            id="board"
+            class="board"
+            role="grid"
+            aria-label="Snake game board"
+            tabindex="0"
+          ></div>
+        </section>
+
+        <section class="controls-info">
+          <p>Use arrow keys or WASD to steer. Press Space to pause or resume.</p>
+        </section>
+
+        <section class="touch-controls" aria-label="On-screen controls">
+          <button class="control-button" data-direction="up" type="button" aria-label="Move up">Up</button>
+          <div class="touch-controls__row">
+            <button class="control-button" data-direction="left" type="button" aria-label="Move left">Left</button>
+            <button class="control-button" data-direction="down" type="button" aria-label="Move down">Down</button>
+            <button class="control-button" data-direction="right" type="button" aria-label="Move right">Right</button>
+          </div>
+        </section>
+
+        <section class="leaderboard" aria-labelledby="leaderboard-title">
+          <div class="leaderboard__header">
+            <h3 id="leaderboard-title">Leaderboard</h3>
+            <span class="leaderboard__meta">Top 5 Runs</span>
+          </div>
+          <ol id="leaderboard-list" class="leaderboard__list">
+            <li class="leaderboard__empty">No scores yet. Finish a game to set the board.</li>
+          </ol>
+        </section>
+
+        <section class="performance-card" aria-labelledby="performance-title">
+          <div class="performance-card__header">
+            <div>
+              <h3 id="performance-title">Performance Summary</h3>
+              <p class="section-copy">
+                A compact view of each run, including score progression, survival time, and input rhythm.
+              </p>
+            </div>
+            <div class="performance-badge">
+              <span class="performance-badge__label">Performance Label</span>
+              <strong id="performance-label">Beginner</strong>
+            </div>
+          </div>
+
+          <div class="performance-grid">
+            <article class="metric">
+              <span class="metric__label">Current Score</span>
+              <strong id="summary-score">0</strong>
+            </article>
+            <article class="metric">
+              <span class="metric__label">Best Score</span>
+              <strong id="summary-high-score">0</strong>
+            </article>
+            <article class="metric">
+              <span class="metric__label">Total Moves</span>
+              <strong id="moves-made">0</strong>
+            </article>
+            <article class="metric">
+              <span class="metric__label">Survival Time</span>
+              <strong id="survival-time">0.0s</strong>
+            </article>
+            <article class="metric">
+              <span class="metric__label">Input Pace</span>
+              <strong id="average-interval">0 ms</strong>
+            </article>
+            <article class="metric">
+              <span class="metric__label">Best Run</span>
+              <strong id="best-run-summary">No saved run</strong>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <section class="about-card" aria-labelledby="about-project-title">
+        <h2 id="about-project-title">About This Project</h2>
+        <p>
+          This project explores reflexes, spatial awareness, and interactive web development
+          through a modern Snake implementation built with plain HTML, CSS, and JavaScript. It
+          combines responsive gameplay, lightweight performance metrics, and a polished interface
+          to showcase both frontend fundamentals and thoughtful interaction design.
+        </p>
+      </section>
+    </main>
+
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
